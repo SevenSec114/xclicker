@@ -8,7 +8,7 @@
 #include "config.h"
 
 // Forward declaration
-static gboolean on_window_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data);
+static gboolean on_window_delete_event(GtkWidget *widget);
 
 enum ClickTypes
 {
@@ -799,7 +799,7 @@ MainAppWindow *main_app_window_new(XClickerApp *app)
 /**
  * Handle window close event(hide window)
  */
-static gboolean on_window_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data)
+static gboolean on_window_delete_event(GtkWidget *widget)
 {
 	if (config && config->close_behavior && strcmp(config->close_behavior, "Close application") == 0)
 	{
