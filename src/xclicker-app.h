@@ -11,4 +11,14 @@ G_DECLARE_FINAL_TYPE(XClickerApp, xclicker_app, XCLICKER, APP, GtkApplication)
  */
 XClickerApp *xclicker_app_new();
 
+/**
+ * Shows the main window.
+ */
+void show_window(XClickerApp *app);
+
+/**
+ * Quits the application completely.
+ */
+void xclicker_app_quit(XClickerApp *app);
+
 #endif

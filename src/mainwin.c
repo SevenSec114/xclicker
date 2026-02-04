@@ -7,6 +7,9 @@
 #include "utils.h"
 #include "config.h"
 
+// Forward declaration
+static gboolean on_window_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data);
+
 enum ClickTypes
 {
 	CLICK_TYPE_SINGLE,
@@ -698,6 +701,9 @@ static void main_app_window_init(MainAppWindow *win)
 	config_init();
 
 	mainappwindow.pwin = gtk_widget_get_toplevel(win);
+	
+	// Connect delete event to hide window
+	g_signal_connect(win, "delete-event", G_CALLBACK(on_window_delete_event), NULL);
 
 	// Entries
 	mainappwindow.hours_entry = win->hours_entry;
@@ -788,4 +794,13 @@ static void main_app_window_class_init(MainAppWindowClass *class)
 MainAppWindow *main_app_window_new(XClickerApp *app)
 {
 	return g_object_new(MAIN_APP_WINDOW_TYPE, "application", app, NULL);
+}
+
+/**
+ * Handle window close event(hide window)
+ */
+static gboolean on_window_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data)
+{
+	gtk_widget_hide(widget);
+	return TRUE;
 }
