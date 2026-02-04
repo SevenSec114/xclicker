@@ -34,7 +34,7 @@ static void create_status_icon(XClickerApp *app)
 		return;
 	}
 
-	// Try to load custom icon first, fallback to system icon
+	// Load icon
 	GError *error = NULL;
 	GdkPixbuf *pixbuf = gdk_pixbuf_new_from_resource("/res/icon.png", &error);
 

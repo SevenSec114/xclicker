@@ -138,6 +138,13 @@ struct Config *config_read_from_file()
     config->random_interval_ms = g_key_file_get_string(config_gfile, PCK_RANDOM_INTERVAL_MS, NULL);
     config->use_hold_time = g_key_file_get_boolean(config_gfile, PCK_HOLD_TIME, NULL);
     config->hold_time_ms = g_key_file_get_string(config_gfile, PCK_HOLD_TIME_MS, NULL);
+    config->holdtime_type = g_key_file_get_string(config_gfile, PCK_HOLD_TIME_TYPE, NULL);
+
+    config->close_behavior = g_key_file_get_string(config_gfile, PCK_CLOSE_BEHAVIOR, NULL);
+    if (!config->close_behavior)
+    {
+        config->close_behavior = "Minimize to tray";
+    }
 
     return config;
 }
